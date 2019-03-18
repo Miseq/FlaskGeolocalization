@@ -5,7 +5,7 @@ class Location(Resource):
     def get_db(self):
         db = getattr(g, '_database', None)
         if db is None:
-            db = g._database = shelve.open('locations.db')
+            db = g._database = shelve.open('./db/locations.db')
         return db
 
     def get(self, id):

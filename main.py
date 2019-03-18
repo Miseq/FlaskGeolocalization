@@ -16,6 +16,7 @@ def load_from_file(file='test_locations.json'):
         exit(404)
 
 
+# Function which  formats given arguments into json dict and sends it for calculating
 def check_closest_location(latitude, longitude):
     flag, messege = coordinates_correctnes(latitude, longitude)
     if flag == 0:
@@ -31,6 +32,7 @@ def check_closest_location(latitude, longitude):
         exit()
 
 
+# Checks if given arguments are correct
 def coordinates_correctnes(latitude, longitude):
     lat = float(latitude)
     lon = float(longitude)
@@ -68,10 +70,6 @@ def main():
                 number_of_locations += 1
             else:
                 print("{0} - {1}, going to another record".format(location['name'], messeage))
-
-        # headers = {'content-type': 'application/json'}
-        r =requests.post('http://127.0.0.1:8000/locations', json={"name": "miejsce4", "latitude": "40.013","longitude": "140.24"})
-        print(r.json)
         response = "Added {0} locations to list".format(number_of_locations)
 
     if args.locations:
@@ -94,7 +92,7 @@ def main():
 
     if args.address_input:
         raw_geo = geocoder.osm(args.address_input)
-        location = raw_geo.geojson['features'][0]['properties']     # OMG!
+        location = raw_geo.geojson['features'][0]['properties']     # OMG! it's hard to get here
         print('Algorythim, based on your input will search for closest location {0}'.format(location['address']))
         response = check_closest_location(location['lat'], location['lng'])
 
@@ -102,6 +100,7 @@ def main():
         response = "No argument was choosen, please try again. Type python main.py --help for manual"
 
     print(response)
+
 
 if __name__ == '__main__':
     main()

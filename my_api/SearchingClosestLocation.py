@@ -1,12 +1,11 @@
 from my_api.imports import *
-import geopy
 
 class SearchingClosestLocation(Resource):
 
     def get_db(self):
         db = getattr(g, '_database', None)
         if db is None:
-            db = g._database = shelve.open('locations.db')
+            db = g._database = shelve.open('./db/locations.db')
         return db
 
     def post(self):
@@ -21,8 +20,6 @@ class SearchingClosestLocation(Resource):
 
         for key in locations:
             location = db[key]
-            latitude_location = location['latitude']
-            longitude_location = location['longitude']
 
             distance = self.calculate(latitude_user, longitude_user, location.get('latitude'), location.get('longitude'))
 
@@ -30,7 +27,7 @@ class SearchingClosestLocation(Resource):
                 closest_location = distance
                 closest_place = location
 
-        response = "Closest location: {0}, with coordinates: latitude {1}, longitude {2},estimeted distance in km: {3}".format(closest_place['name'], closest_place['latitude'], closest_place['longitude'], str(distance))
+        response = "Closest location: {0}, with coordinates: latitude {1}, longitude {2},estimeted distance in km: {3}".format(closest_place['name'], closest_place['latitude'], closest_place['longitude'], str(distance))     #TODO make it less ugly
 
         if closest_place is not "":
             return {'message': 'Success', 'data': response}, 201
@@ -41,5 +38,5 @@ class SearchingClosestLocation(Resource):
         coordinates_user = (float(lat_u), float(lon_u))
         coordinates_location = (float(lat_l), float(lon_l))
 
-        return geopy.distance.distance(coordinates_user, coordinates_location).km
+        return geopy.distance.distance(coordinates_user, coordinates_location).km   # cam also return in meteres and miles
 

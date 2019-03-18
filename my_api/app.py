@@ -10,7 +10,7 @@ api = Api(app)
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
-        db = g._database = shelve.open('locations.db')
+        db = g._database = shelve.open('./db/locations.db')
     return db
 
 
