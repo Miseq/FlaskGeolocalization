@@ -1,0 +1,27 @@
+[
+  {
+    "name": "miejsce1",
+    "latitude": "10.0",
+    "longitude": "100.24"
+  },
+  {
+    "name": "miejsce2",
+    "latitude": "20.013",
+    "longitude": "120.24"
+  },
+   {
+    "name": "miejsce3",
+    "latitude": "30.013",
+    "longitude": "130.24"
+  },
+   {
+    "name": "miejsce4",
+    "latitude": "40.013",
+    "longitude": "140.24"
+  },
+   {
+    "name": "miejsce5",
+    "latitude": "50.013",
+    "longitude": "150.24"
+  }
+]

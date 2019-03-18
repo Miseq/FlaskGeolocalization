@@ -1,0 +1,89 @@
+# Servocode task
+
+## Usage
+All records have form of json dictonary.
+All responses will have that form
+
+'''json
+{
+    "data": "Diffrent datatypes that holds content of the response"
+    "message": "Description of what have been done"
+}
+'''
+
+Different response definitions will only explain the expected value of "data" field
+
+
+### Getting list of all localizations
+
+**Definition**
+'GET /locations'
+
+**Response**
+-'200 OK' on success
+
+'''json
+[
+    {
+        "name": "example"
+        "latitude": "37.234894"
+        "longitude": "-115.81082 "
+    },
+    {
+        "name": "example 2"
+        "latitude": "29.979175"
+        "longitude": "31.134358 "
+    }
+]
+'''
+
+
+### Registering a new location
+
+**Definition**
+'POST /locations'    #TODO POST vs Put
+
+**Arguments**
+- '"name": string' - name of location
+- '"latitude": float' - position of location, from -90 to +90
+- '"longitude": float' - position of location, from -180 to +180
+
+If a location with given 'name' alredy exist it will be overwritten(!)
+
+**Response**
+- '201 Created' on success
+'''json
+{
+    "name": "example 2"
+    "latitude": "29.979175"
+    "longitude": "31.134358 "
+}
+'''
+
+### Getting data about single place
+
+**Definition**
+'Get /locations/name'
+
+**Response**
+- '404 Not Found' if location with this id does not exist
+- '200 OK' on success
+
+'''json
+{
+    "name": "example 2"
+    "latitude": "29.979175"
+    "longitude": "31.134358 "
+}
+'''
+
+
+### Deleting all locations
+
+**Definition**
+'DELETE /locations
+
+**Response**
+- '200 No content' if DELETE request completed succcesfully
+
+
