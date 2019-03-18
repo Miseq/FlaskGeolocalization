@@ -1,4 +1,4 @@
-from my_api.imports import *
+from imports import *
 
 
 class LocationList(Resource):

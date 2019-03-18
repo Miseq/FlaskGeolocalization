@@ -1,7 +1,7 @@
-from my_api.Location import Location
-from my_api.SearchingClosestLocation import SearchingClosestLocation
-from my_api.imports import *
-from my_api.LocationList import LocationList
+from Location import Location
+from SearchingClosestLocation import SearchingClosestLocation
+from imports import *
+from LocationList import LocationList
 
 app = Flask(__name__)
 api = Api(app)
