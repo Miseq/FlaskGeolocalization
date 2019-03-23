@@ -1,7 +1,11 @@
-from Location import Location
-from SearchingClosestLocation import SearchingClosestLocation
-from imports import *
-from LocationList import LocationList
+from my_api.location import Location
+from my_api.searching_closest_location import SearchingClosestLocation
+from flask import Flask, g
+import markdown     # konwersja txt to html
+import os
+import shelve
+from flask_restful import Api
+from my_api.location_list import LocationList
 
 app = Flask(__name__)
 api = Api(app)

@@ -1,8 +1,11 @@
-from imports import *
+from flask import g, request
+import shelve
+from flask_restful import Resource
 
 
 class LocationList(Resource):
 
+    @staticmethod
     def get_db(self):
         db = getattr(g, '_database', None)
         if db is None:
