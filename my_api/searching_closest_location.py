@@ -13,7 +13,7 @@ class SearchingClosestLocation(Resource):
         return db
 
     def post(self):
-        db = self.get_db()
+        db = self.get_db(self)
         locations = list(db.keys())
         closest_location = None
         closest_place = ""
@@ -33,8 +33,9 @@ class SearchingClosestLocation(Resource):
                 closest_latitude = closest_place['latitude']
                 closest_name = closest_place['name']
                 closest_longitude = closest_place['longitude']
+
         response = "Closest location: {0}, with coordinates: latitude {1}, longitude {2},estimeted distance in km: {3}"
-        response.format(closest_name, closest_latitude, closest_longitude, str(distance))   # TODO make it less ugly
+        response.format(closest_name, closest_latitude, closest_longitude, str(distance))
 
         if closest_place is not "":
             return {'message': 'Success', 'data': response}, 201

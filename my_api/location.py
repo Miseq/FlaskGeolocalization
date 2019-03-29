@@ -13,14 +13,14 @@ class Location(Resource):
         return db
 
     def get(self, key):
-        db = self.get_db()
+        db = self.get_db(self)
         if key in db:
             return {'message': 'Success', 'data': db[key]}, 200
         else:
             return {'message': 'Location not found', 'data': {}}, 404
 
     def delete(self, key):
-        db = self.get_db()
+        db = self.get_db(self)
         if key in db:
             del db[key]
             return {'message': 'Deleted', 'data': {}}, 202
